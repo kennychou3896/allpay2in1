@@ -1,10 +1,10 @@
 <?php 
 
-namespace ScottChayaa\Allpay\Controllers;
+namespace Kennychou3896\Allpay\Controllers;
  
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use ScottChayaa\Allpay\Facade\Allpay;
+use Kennychou3896\Allpay\Facade\Allpay;
 
 class DemoController extends Controller 
 {	
@@ -55,7 +55,7 @@ class DemoController extends Controller
                    'Currency' => "元", 'Quantity' => (int) "1", 'URL' => "dedwed"));
 
         //Go to AllPay
-        echo "歐付寶頁面導向中...";
+        echo "線上刷卡頁面導向中...";
         echo Allpay::i()->CheckOutString();
     }
 }
