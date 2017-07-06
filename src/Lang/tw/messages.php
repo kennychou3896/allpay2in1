@@ -1,5 +1,5 @@
 <?php
  
 return [
-    'greeting' => '大家哈摟!!'
+    'greeting' => '大家好!!'
 ];
