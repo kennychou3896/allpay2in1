@@ -1,0 +1,22 @@
+{
+    "name": "scottchayaa/allpay",
+    "description": "Allpay - Laravel 5 version",
+    "type": "ecTool",
+    "keywords": ["allpay"],
+    "authors": [
+        {
+            "name": "Scott Lin",
+            "email": "mmx112945@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {  
+        "classmap": [
+            "src/lib"
+        ],
+        "psr-4": {
+            "ScottChayaa\\Allpay\\": "src/"
+        }
+    }
+}
