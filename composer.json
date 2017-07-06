@@ -1,6 +1,6 @@
 {
-    "name": "kennychou3896/ecpay-2in1",
-    "description": "Ecpay - Laravel 5 version",
+    "name": "kennychou3896/Allpay2in1",
+    "description": "Allpay - Laravel 5 version",
     "type": "ecTool",
     "keywords": ["allpay","ecpay"],
     "authors": [
@@ -16,7 +16,7 @@
             "src/lib"
         ],
         "psr-4": {
-            "KennyChou3896\\Ecpay-2in1\\": "src/"
+            "KennyChou3896\\Allpay2in1\\": "src/"
         }
     }
 }
