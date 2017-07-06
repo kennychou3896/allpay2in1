@@ -1,12 +1,12 @@
 {
-    "name": "scottchayaa/allpay",
-    "description": "Allpay - Laravel 5 version",
+    "name": "kennychou3896/ecpay-2in1",
+    "description": "Ecpay - Laravel 5 version",
     "type": "ecTool",
     "keywords": ["allpay"],
     "authors": [
         {
-            "name": "Scott Lin",
-            "email": "mmx112945@gmail.com"
+            "name": "Kenny Chou",
+            "email": "kenny@kennychou.com"
         }
     ],
     "minimum-stability": "dev",
@@ -16,7 +16,7 @@
             "src/lib"
         ],
         "psr-4": {
-            "ScottChayaa\\Allpay\\": "src/"
+            "KennyChou\\ecpay-2in1\\": "src/"
         }
     }
 }
