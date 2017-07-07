@@ -4,7 +4,7 @@
     <title>Allpay Demo Page</title>
 </head>
 <body>
-	<form action="allpay_demo_201608/checkout">
+	<form action="allpay_demo/checkout">
 		<h1>Allpay Demo</h1>
 		<hr>
 		<h2>ChoosePayment</h2>
