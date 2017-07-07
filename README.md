@@ -63,12 +63,11 @@ return [
 How To Use -->線上刷卡篇
 
 在Controller中
-
-use Allpay;
-public function Demo()
-{
-
-//Official Example :     
+      
+    use Allpay; 
+    public function Demo()
+    {   
+    //Official Example :     
     //https://github.com/allpay/PHP/blob/master/AioSDK/example/sample_Credit_CreateOrder.php
     
     //基本參數(可依系統規劃自行調整)
@@ -96,7 +95,7 @@ public function Demo()
     echo "線上刷卡頁面導向中...";    
     echo Allpay::i()->CheckOutForm();
     
-   //開發階段，如果你希望看到表單的內容，可以改為以下敘述：   
-    echo Allpay::i()->CheckOutForm('按我，才送出');
+    //開發階段，如果你希望看到表單的內容，可以改為以下敘述：   
+    //echo Allpay::i()->CheckOutForm('按我，才送出');
     
-}
+    }
