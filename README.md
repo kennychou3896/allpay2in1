@@ -40,9 +40,9 @@ composer install
 **step 2 : Modify config file**
 增加`config/app.php`中的`providers`和`aliases`的參數 。
 
-'providers' => [ // ... kennychou3896\allpay\AllpayServiceProvider::class, ]
+'providers' => [ // ... Kennychou3896\Allpay\AllpayServiceProvider::class, ]
 
-'aliases' => [ // ... 'Allpay' => kennychou3896\Allpay\Facade\Allpay::class, ]
+'aliases' => [ // ... 'Allpay' => Kennychou3896\Allpay\Facade\Allpay::class, ]
 
 
 **step 3 : Publish config to your project**
