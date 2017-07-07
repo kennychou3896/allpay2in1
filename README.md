@@ -53,14 +53,10 @@ php artisan vendor:publish
 至config/allpay.php中確認Allpay設定：
 
 return [
-    'ServiceURL' => 'http://payment-stage.ecpay.com.tw/Cashier/AioCheckOut',
-    
-    'HashKey'    => '5294y06JbISpM5x9',
-    
-    'HashIV'     => 'v77hoKGq4kWxNNIS',
-    
-    'MerchantID' => '2000132',
-    
+    'ServiceURL' => 'http://payment-stage.ecpay.com.tw/Cashier/AioCheckOut',    
+    'HashKey'    => '5294y06JbISpM5x9',    
+    'HashIV'     => 'v77hoKGq4kWxNNIS',    
+    'MerchantID' => '2000132',    
 ];
 
 
@@ -69,11 +65,10 @@ How To Use -->線上刷卡篇
 在Controller中
 
 use Allpay;
-
 public function Demo()
 {
-    //Official Example : 
-    
+
+//Official Example :     
     //https://github.com/allpay/PHP/blob/master/AioSDK/example/sample_Credit_CreateOrder.php
     
     //基本參數(可依系統規劃自行調整)
@@ -98,12 +93,10 @@ public function Demo()
 
     //Go to EcPay
     
-    echo "線上刷卡頁面導向中...";
-    
+    echo "線上刷卡頁面導向中...";    
     echo Allpay::i()->CheckOutForm();
     
-   //開發階段，如果你希望看到表單的內容，可以改為以下敘述：
-   
-    //echo Allpay::i()->CheckOutForm('按我，才送出');
+   //開發階段，如果你希望看到表單的內容，可以改為以下敘述：   
+    echo Allpay::i()->CheckOutForm('按我，才送出');
     
 }
