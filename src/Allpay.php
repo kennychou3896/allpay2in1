@@ -1,6 +1,6 @@
 <?php
 
-namespace kennychou3896\Allpay;
+namespace Kennychou3896\Allpay;
 
 class Allpay
 {
