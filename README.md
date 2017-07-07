@@ -54,7 +54,7 @@ php artisan vendor:publish
 
     return [
         'ServiceURL' => 'http://payment-stage.ecpay.com.tw/Cashier/AioCheckOut',    
-        'HashKey'    => '5294y06JbISpM5x9',    
+        'HashKey'    => '5294y06JbISpM5x9',    //這是綠界給的test Key ，正式上線由此抽換為你的Key
         'HashIV'     => 'v77hoKGq4kWxNNIS',    
         'MerchantID' => '2000132',    
     ];
