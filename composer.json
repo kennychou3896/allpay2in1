@@ -7,7 +7,9 @@
     "authors": [
         {
             "name": "Kenny Chou",
-            "email": "kenny@kennychou.com"
+            "website": "http://kennychou.com",
+            "email": "kenny@kennychou.com".
+            
         }
     ],
     "minimum-stability": "dev",
