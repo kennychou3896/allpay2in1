@@ -25,7 +25,7 @@ composer require kennychou3896/allpay2in1 dev-master
 或者是新增package至composer.json
 
 "require": {
-  "kennychou3896/allpay": "dev-master"
+  "kennychou3896/allpay2in1": "dev-master"
 },
 
 然後更新安裝
