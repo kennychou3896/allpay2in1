@@ -52,12 +52,12 @@ php artisan vendor:publish
 
 至config/allpay.php中確認Allpay設定：
 
-return [
-    'ServiceURL' => 'http://payment-stage.ecpay.com.tw/Cashier/AioCheckOut',    
-    'HashKey'    => '5294y06JbISpM5x9',    
-    'HashIV'     => 'v77hoKGq4kWxNNIS',    
-    'MerchantID' => '2000132',    
-];
+    return [
+        'ServiceURL' => 'http://payment-stage.ecpay.com.tw/Cashier/AioCheckOut',    
+        'HashKey'    => '5294y06JbISpM5x9',    
+        'HashIV'     => 'v77hoKGq4kWxNNIS',    
+        'MerchantID' => '2000132',    
+    ];
 
 
 How To Use -->線上刷卡篇
@@ -67,35 +67,34 @@ How To Use -->線上刷卡篇
     use Allpay; 
     public function Demo()
     {   
-    //Official Example :     
-    //https://github.com/allpay/PHP/blob/master/AioSDK/example/sample_Credit_CreateOrder.php
+      //Official Example :     
+      //https://github.com/allpay/PHP/blob/master/AioSDK/example/sample_Credit_CreateOrder.php
     
-    //基本參數(可依系統規劃自行調整)
-    Allpay::i()->Send['ReturnURL']         = "http://www.yourwebsites.com.tw/ReturnURL" ; 
+      //基本參數(可依系統規劃自行調整)
+      Allpay::i()->Send['ReturnURL']         = "http://www.yourwebsites.com.tw/ReturnURL" ; 
                                             //交易結果回報的網址
-    Allpay::i()->Send['ClientBackURL']     = "http://www.yourwebsites.com.tw/ClientBackURL" ; 
+      Allpay::i()->Send['ClientBackURL']     = "http://www.yourwebsites.com.tw/ClientBackURL" ; 
                                             //交易結束，讓user導回的網址
-    Allpay::i()->Send['MerchantTradeNo']   = "Test".time() ;           //訂單編號
-    Allpay::i()->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');      //交易時間
-    Allpay::i()->Send['TotalAmount']       = 2000;                     //交易金額
-    Allpay::i()->Send['TradeDesc']         = "good to drink" ;         //交易描述
-    Allpay::i()->Send['EncryptType']      = '1' ;  
-    Allpay::i()->Send['ChoosePayment']     = "Credit" ;     //付款方式:信用卡
-    Allpay::i()->Send['PaymentType']        = 'aio' ;
+      Allpay::i()->Send['MerchantTradeNo']   = "Test".time() ;           //訂單編號
+      Allpay::i()->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');      //交易時間
+      Allpay::i()->Send['TotalAmount']       = 2000;                     //交易金額
+      Allpay::i()->Send['TradeDesc']         = "good to drink" ;         //交易描述
+      Allpay::i()->Send['EncryptType']      = '1' ;  
+      Allpay::i()->Send['ChoosePayment']     = "Credit" ;     //付款方式:信用卡
+      Allpay::i()->Send['PaymentType']        = 'aio' ;
 
-    //訂單的商品資料
-    array_push(Allpay::i()->Send['Items'], 
+      //訂單的商品資料
+      array_push(Allpay::i()->Send['Items'], 
               array('Name' => "美美小包包", 
               'Price' => (int)"2000",'Currency' => "元", 
               'Quantity' => (int) "1", 
               'URL' => "http://www.yourwebsites.com.tw/Product"));
 
-    //Go to EcPay
+      //Go to EcPay    
+      echo "線上刷卡頁面導向中...";    
+      echo Allpay::i()->CheckOutForm();
     
-    echo "線上刷卡頁面導向中...";    
-    echo Allpay::i()->CheckOutForm();
-    
-    //開發階段，如果你希望看到表單的內容，可以改為以下敘述：   
-    //echo Allpay::i()->CheckOutForm('按我，才送出');
+      //開發階段，如果你希望看到表單的內容，可以改為以下敘述：   
+      //echo Allpay::i()->CheckOutForm('按我，才送出');
     
     }
