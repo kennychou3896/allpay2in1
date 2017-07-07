@@ -1,10 +1,10 @@
 <?php 
 
-namespace kennychou3896\Allpay\Controllers;
+namespace Kennychou3896\Allpay\Controllers;
  
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use kennychou3896\Allpay\Facade\Allpay;
+use Allpay;
 
 class DemoController extends Controller 
 {	
