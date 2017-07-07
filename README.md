@@ -76,9 +76,11 @@ public function Demo()
     
     //https://github.com/allpay/PHP/blob/master/AioSDK/example/sample_Credit_CreateOrder.php
     
-    //基本參數(請依系統規劃自行調整)
-    Allpay::i()->Send['ReturnURL']         = "http://www.yourwebsites.com.tw/ReturnURL" ; //交易結果回報的網址
-    Allpay::i()->Send['ClientBackURL']     = "http://www.yourwebsites.com.tw/ClientBackURL" ; //交易結束，讓user導回的網址
+    //基本參數(可依系統規劃自行調整)
+    Allpay::i()->Send['ReturnURL']         = "http://www.yourwebsites.com.tw/ReturnURL" ; 
+                                            //交易結果回報的網址
+    Allpay::i()->Send['ClientBackURL']     = "http://www.yourwebsites.com.tw/ClientBackURL" ; 
+                                            //交易結束，讓user導回的網址
     Allpay::i()->Send['MerchantTradeNo']   = "Test".time() ;           //訂單編號
     Allpay::i()->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');      //交易時間
     Allpay::i()->Send['TotalAmount']       = 2000;                     //交易金額
