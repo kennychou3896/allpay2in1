@@ -1,4 +1,4 @@
-# Allpay2in1
+# allpay2in1
 
 整合綠界線上刷卡及超商物流
 
@@ -20,12 +20,12 @@ step 1 : Download the package
 
 composer命令安裝	
 
-composer require kennychou3896/Allpay2in1 dev-master
+composer require kennychou3896/allpay2in1 dev-master
 
 或者是新增package至composer.json
 
 "require": {
-  "Kennychou3896/allpay": "dev-master"
+  "kennychou3896/allpay": "dev-master"
 },
 
 然後更新安裝
@@ -40,9 +40,9 @@ composer install
 **step 2 : Modify config file**
 增加`config/app.php`中的`providers`和`aliases`的參數 。
 
-'providers' => [ // ... Kennychou3896\Allpay\AllpayServiceProvider::class, ]
+'providers' => [ // ... kennychou3896\allpay\AllpayServiceProvider::class, ]
 
-'aliases' => [ // ... 'Allpay' => Kennychou3896\Allpay\Facade\Allpay::class, ]
+'aliases' => [ // ... 'Allpay' => kennychou3896\Allpay\Facade\Allpay::class, ]
 
 
 **step 3 : Publish config to your project**
