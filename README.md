@@ -54,9 +54,13 @@ php artisan vendor:publish
 
 return [
     'ServiceURL' => 'http://payment-stage.ecpay.com.tw/Cashier/AioCheckOut',
+    
     'HashKey'    => '5294y06JbISpM5x9',
+    
     'HashIV'     => 'v77hoKGq4kWxNNIS',
+    
     'MerchantID' => '2000132',
+    
 ];
 
 
@@ -69,6 +73,7 @@ use Allpay;
 public function Demo()
 {
     //Official Example : 
+    
     //https://github.com/allpay/PHP/blob/master/AioSDK/example/sample_Credit_CreateOrder.php
     
     //基本參數(請依系統規劃自行調整)
@@ -83,13 +88,20 @@ public function Demo()
     Allpay::i()->Send['PaymentType']        = 'aio' ;
 
     //訂單的商品資料
-    array_push(Allpay::i()->Send['Items'], array('Name' => "美美小包包", 'Price' => (int)"2000",
-               'Currency' => "元", 'Quantity' => (int) "1", 'URL' => "http://www.yourwebsites.com.tw/Product"));
+    array_push(Allpay::i()->Send['Items'], 
+              array('Name' => "美美小包包", 
+              'Price' => (int)"2000",'Currency' => "元", 
+              'Quantity' => (int) "1", 
+              'URL' => "http://www.yourwebsites.com.tw/Product"));
 
     //Go to EcPay
+    
     echo "線上刷卡頁面導向中...";
+    
     echo Allpay::i()->CheckOutForm();
+    
    //開發階段，如果你希望看到表單的內容，可以改為以下敘述：
+   
     //echo Allpay::i()->CheckOutForm('按我，才送出');
     
 }
