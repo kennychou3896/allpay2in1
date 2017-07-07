@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Allpay Demo Page</title>
+    <title>ECpay Demo Page</title>
 </head>
 <body>
-	<form action="allpay_demo/checkout">
+	<form action="ecpay_demo/checkout">
 		<h1>Allpay Demo</h1>
 		<hr>
 		<h2>ChoosePayment</h2>
