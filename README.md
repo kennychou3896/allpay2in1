@@ -39,7 +39,8 @@ composer install
 
 **step 2 : Modify config file**
 增加`config/app.php`中的`providers`和`aliases`的參數 。
-providers' => [ // ... Kennychou3896\Allpay\AllpayServiceProvider::class, ]
+
+'providers' => [ // ... Kennychou3896\Allpay\AllpayServiceProvider::class, ]
 
 'aliases' => [ // ... 'Allpay' => Kennychou3896\Allpay\Facade\Allpay::class, ]
 
@@ -59,7 +60,7 @@ return [
 ];
 
 
-How To Use--->線上刷卡
+How To Use -->線上刷卡篇
 
 在Controller中
 
