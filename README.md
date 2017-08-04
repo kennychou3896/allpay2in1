@@ -98,3 +98,127 @@ How To Use -->線上刷卡篇
       //echo Allpay::i()->CheckOutForm('按我，才送出');
     
     }
+
+**超商物流篇--到店付**
+    
+    1.選擇『到付店』：
+    Allpay::l()->Send['MerchantTradeNo'] = 'Test-'.date('YmdHis');
+		Allpay::l()->Send['LogisticsSubType'] = 'UNIMARTC2C'; //或FAMIC2C,全家
+		Allpay::l()->Send['IsCollection'] = 'N';//是否代收貨款
+		Allpay::l()->Send['ServerReplyURL'] = url('shop_option_reply'); //超商系統回覆路徑post
+		Allpay::l()->Send['ExtraData'] = ''; //附帶資料
+		Allpay::l()->Send['Device'] = '0';		
+		$logisticsForm = Allpay::l()->CvsMap();
+		echo $logisticsForm;
+    
+    2.取得『到付店』之回覆資訊：
+    $data = array();		
+    $data['merchant_trade_no'] = $request->input('MerchantTradeNo'); //訂單編號
+    $data['LogisticsSubType'] = $request->input('LogisticsSubType'); //物流通路代碼,如統一:UNIMART
+    $data['CVSStoreID'] = $request->input('CVSStoreID');//商店代碼
+    $data['CVSStoreName'] = $request->input('CVSStoreName');
+    $data['CVSAddress'] = $request->input('CVSAddress');//User 所選之超商店舖地址
+    $data['CVSTelephone'] = $request->input('CVSTelephone');//User 所選之超商店舖電話
+    $data['ExtraData'] = $request->input('ExtraData');//額外資訊,原資料回傳
+    
+    3.產生『到付店』托運單：
+    //背景建立店到付物流單
+    	try {
+			    $AL = Allpay::l();
+	  		  $AL->HashKey = config('allpay.HashKey');
+	  		  $AL->HashIV = config('allpay.HashIV');
+	        $AL->Send = array(
+	    		    'MerchantID' => config('allpay.MerchantID'),
+	            'MerchantTradeNo' => 'mic-' . date('YmdHis'),
+	            'MerchantTradeDate' => date('Y/m/d H:i:s'),
+	            'LogisticsType' => 'CVS',
+	            'LogisticsSubType' => 'UNIMARTC2C',
+	            'GoodsAmount' => 100,
+	            'CollectionAmount' => 100,
+	            'IsCollection' => 'Y',    //是否代收貨款
+	            'GoodsName' => '商品名稱',
+	            'SenderName' => '李小華',
+	            'SenderPhone' => '0226550115',
+	            'SenderCellPhone' => '0911222333',
+	            'ReceiverName' => '周大大',
+	            'ReceiverPhone' => '0233881234',
+	            'ReceiverCellPhone' => '0912555666',
+	            'ReceiverEmail' => 'user@email.com',
+	            'TradeDesc' => '測試交易敘述',
+	            'ServerReplyURL' => url('logistics_order_reply'),        //物流狀態回覆網址
+	            'LogisticsC2CReplyURL' => url('logistics_order_C2C_reply'),    //到付店若有異動訊息回覆網址
+	            'Remark' => '測試備註',
+	            'PlatformID' => '',
+	        );
+	        $AL->SendExtend = array(
+	             'ReceiverStoreID' => '136392',     //到付店id
+	             'ReturnStoreID' => '991182'        //回退店id,一般與寄件店id同
+	        );
+			    $Result = $AL->BGCreateShippingOrder();   //超商系統回覆內容
+			    echo '<pre>' . print_r($Result, true) . '</pre>';          
+          if($Result['RtnCode'] == 300){
+            //托運單成功建立
+
+          }
+		} catch(Exception $e) {
+			    $Result = $e->getMessage();
+          echo $e->getMessage();
+    } 
+    3.1 取消『到付店』托運單(僅統一超商)：
+        // 取消物流單(統一超商C2C)
+        try {
+          $AL = Allpay::l();
+          $AL->HashKey = config('allpay.HashKey');
+          $AL->HashIV = config('allpay.HashIV');
+            $AL->Send = array(
+            'MerchantID' => config('allpay.MerchantID'),
+            'AllPayLogisticsID' => $ships->AllPayLogisticsID,     //綠界物流編號
+                'CVSPaymentNo' => $ships->CVSPaymentNo,        		//統一超商寄貨單號
+                'CVSValidationNo' => $ships->CVSValidationNo,         //驗證碼
+                'PlatformID' => ''
+          );
+          $Result = $AL->CancelUnimartLogisticsOrder();
+          //	echo '<pre>' . print_r($Result, true) . '</pre>';
+
+         } catch(Exception $e) {
+            $Result = $e->getMessage();
+            echo $e->getMessage();
+         } 
+        
+    4.列印『到付店』托運＆繳款單：
+      //統一超商
+			try {
+		        $AL = Allpay::l();
+		        $AL->HashKey = config('allpay.HashKey');
+		        $AL->HashIV = config('allpay.HashIV');
+		        $AL->Send = array(
+		            'MerchantID' => config('allpay.MerchantID'),
+		            'AllPayLogisticsID' => $Result['AllPayLogisticsID'],
+		            'CVSPaymentNo' => $Result['CVSPaymentNo'],
+		            'CVSValidationNo' => $Result['CVSValidationNo'],
+		            'PlatformID' => ''
+		        );
+		        // PrintUnimartC2CBill(Button名稱, Form target)
+		        $html = $AL->PrintUnimartC2CBill();  //'列印繳款單(統一超商C2C)'
+		        echo $html;
+		    } catch(Exception $e) {
+		        echo $e->getMessage();
+		    }
+        //全家
+        try {
+              $AL = Allpay::l();
+              $AL->HashKey = config('allpay.HashKey');
+              $AL->HashIV = config('allpay.HashIV');
+              $AL->Send = array(
+                  'MerchantID' => config('allpay.MerchantID'),
+                  'AllPayLogisticsID' => $Result['AllPayLogisticsID'],
+                  'CVSPaymentNo' => $Result['CVSPaymentNo'],
+                  'PlatformID' => ''
+              );
+              // PrintFamilyC2CBill(Button名稱, Form target)
+              $html = $AL->PrintFamilyC2CBill(); //'全家列印小白單(全家超商C2C)'
+              echo $html;  
+          } catch(Exception $e) {
+              echo $e->getMessage();
+          }
+    
